@@ -11,16 +11,14 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  async rewrites() {
-    return [
-      {
-        source: '/api/v1/:path*',
-        destination: 'http://127.0.0.1:5670/api/v1/:path*',
-      },
-    ];
-  },
   env: {
-    API_BASE_URL: "http://127.0.0.1:5670",
+    // Public base URL of the backend, resolved at build time. In a static
+    // export this must point to a host reachable from the user's browser
+    // (rewrites() are a no-op for `next export`), so it should be an
+    // absolute http(s) URL, e.g. https://api.example.com. Keep it empty to
+    // serve API calls from the same origin as the UI.
+    API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL ?? '',
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL ?? '',
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GET_USER_URL: process.env.GET_USER_URL,

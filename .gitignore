@@ -15,7 +15,6 @@ next-env.d.ts
 .env.local
 .env*.local
 .env.prod
-.env.template
 *.pem
 *.key
 
