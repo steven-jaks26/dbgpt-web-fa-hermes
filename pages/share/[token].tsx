@@ -845,3 +845,9 @@ const SharePage: NextPage = () => {
 };
 
 export default SharePage;
+
+// Route param is read client-side from the router and data is fetched from
+// the API at runtime, so no paths are prerendered for the static export.
+export async function getStaticPaths() {
+  return { paths: [], fallback: false };
+}

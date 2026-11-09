@@ -140,3 +140,9 @@ export default function TraceDetailPage() {
     </div>
   );
 }
+
+// Trace ids are only known at runtime; the page fetches data client-side, so
+// empty paths + fallback: false satisfies the static export requirement.
+export async function getStaticPaths() {
+  return { paths: [], fallback: false };
+}

@@ -317,3 +317,11 @@ const InfoField: React.FC<InfoFieldProps> = ({ label, className, children }) => 
 );
 
 export default ScheduledTaskDetail;
+
+// This page is fully client-side: the task id is read from the router and
+// data is fetched from the API at runtime. Static export requires an explicit
+// getStaticPaths; an empty list + fallback: false keeps `next export` green
+// (no prerendering needed for arbitrary task ids).
+export async function getStaticPaths() {
+  return { paths: [], fallback: false };
+}

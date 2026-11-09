@@ -555,6 +555,7 @@ export async function getStaticPaths() {
   // 返回可能的动态路由参数为空，表示所有的页面都将在访问时生成
   return {
     paths: [{ params: { type: 'add' } }, { params: { type: 'edit' } }],
-    fallback: 'blocking',
+    // Static export (next export) supports only fallback: false.
+    fallback: false,
   };
 }

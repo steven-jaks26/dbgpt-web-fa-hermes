@@ -275,3 +275,9 @@ const ModelsTable = ({ data }: { data: BenchmarkSummary[] }) => {
 };
 
 export default EvaluationDetail;
+
+// Evaluation codes come from the API at runtime; this page is fully
+// client-side, so no paths are prerendered for the static export.
+export async function getStaticPaths() {
+  return { paths: [], fallback: false };
+}
