@@ -24,7 +24,10 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          # Node >=22.12 supports require() of ESM packages natively; Node 18
+          # throws ERR_REQUIRE_ESM at page-data collection when @antv/g2's CJS
+          # bundles require() d3 ESM subdependencies (d3-array/format/geo).
+          node-version: 22
           cache: npm
           cache-dependency-path: package-lock.json
 

@@ -4,7 +4,7 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const path = require("path");
 const nextConfig = {
   experimental: {
-    esmExternals: false,
+    esmExternals: "loose",
     // Keep static-generation workers bounded on low-memory build hosts.
     cpus: 1,
   },
