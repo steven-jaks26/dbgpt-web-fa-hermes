@@ -1,0 +1,340 @@
+@import './katex-override.css';
+@import './opencode-theme.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', 'Vazirmatn', 'Noto Sans Arabic', Tahoma, Arial, sans-serif;
+  line-height: var(--joy-lineHeight-md, 1.5);
+  --antd-primary-color: #176c68;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-appearance: none;
+}
+
+/* DataLens visual language: shared tokens for DB-GPT pages and overlays. */
+:root {
+  --datalens-bg: #f7f8f5;
+  --datalens-surface: #ffffff;
+  --datalens-soft: #eef2ef;
+  --datalens-ink: #182321;
+  --datalens-muted: #687773;
+  --datalens-line: #d9e2de;
+  --datalens-primary: #176c68;
+  --datalens-primary-hover: #125955;
+  --datalens-primary-soft: #dcefeb;
+  --datalens-shadow: 0 8px 24px rgba(20, 40, 35, .12);
+}
+
+html, body { background: var(--datalens-bg); color: var(--datalens-ink); }
+body.light { background: var(--datalens-bg); color: var(--datalens-ink); }
+body.dark {
+  --datalens-bg: #111817;
+  --datalens-surface: #18211f;
+  --datalens-soft: #202c29;
+  --datalens-ink: #f1f5f2;
+  --datalens-muted: #a7b5b0;
+  --datalens-line: #34433e;
+  --datalens-primary: #63c7bd;
+  --datalens-primary-hover: #82d5cc;
+  --datalens-primary-soft: #193b38;
+  background: var(--datalens-bg);
+  color: var(--datalens-ink);
+}
+
+body .datalens-sidebar {
+  background: var(--datalens-surface) !important;
+  border-inline-end: 1px solid var(--datalens-line);
+  color: var(--datalens-ink);
+}
+body .datalens-sidebar a { color: var(--datalens-muted); }
+body .datalens-sidebar a:hover { color: var(--datalens-primary); }
+body .datalens-brand { gap: 10px; color: var(--datalens-ink) !important; font-weight: 700; letter-spacing: -.03em; }
+body .datalens-brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 9px; background: var(--datalens-primary); color: #fff; font-size: 20px; line-height: 1; }
+body .datalens-brand-name { font-size: 20px; }
+body .datalens-brand-compact .datalens-brand-mark { width: 34px; height: 34px; }
+body .datalens-sidebar .bg-blue-50,
+body .datalens-sidebar .dark\\:bg-blue-900\\/20 { background: var(--datalens-primary-soft) !important; }
+body .datalens-sidebar .text-blue-600,
+body .datalens-sidebar .dark\\:text-blue-400 { color: var(--datalens-primary) !important; }
+
+/* Keep Ant Design tabs, forms, buttons and dialogs on the same visual system. */
+.ant-btn-primary { background: var(--datalens-primary) !important; border-color: var(--datalens-primary) !important; }
+.ant-btn-primary:hover { background: var(--datalens-primary-hover) !important; border-color: var(--datalens-primary-hover) !important; }
+.ant-tabs-ink-bar { background: var(--datalens-primary) !important; }
+.ant-tabs-tab-active .ant-tabs-tab-btn, .ant-tabs-tab:hover { color: var(--datalens-primary) !important; }
+.ant-modal-content, .ant-drawer-content, .ant-popover-inner, .ant-dropdown-menu {
+  border: 1px solid var(--datalens-line);
+  border-radius: 12px !important;
+  box-shadow: var(--datalens-shadow) !important;
+}
+.ant-card, .ant-table, .ant-input, .ant-input-affix-wrapper, .ant-select-selector {
+  border-color: var(--datalens-line) !important;
+  border-radius: 8px !important;
+}
+.ant-card { background: var(--datalens-surface); box-shadow: 0 1px 3px rgba(20, 40, 35, .08); }
+.ant-input:focus, .ant-input-focused, .ant-select-focused .ant-select-selector { border-color: var(--datalens-primary) !important; box-shadow: 0 0 0 2px rgba(23, 108, 104, .14) !important; }
+.ant-switch-checked { background: var(--datalens-primary) !important; }
+
+.light {
+  color: #333;
+  background-color: #f7f7f7;
+}
+
+.dark {
+  color: #f7f7f7;
+  background-color: #151622;
+}
+
+.dark-sub-bg {
+  background-color: rgb(35, 38, 44);
+}
+
+.ant-btn-primary {
+  background-color: var(--antd-primary-color);
+}
+
+.ant-pagination .ant-pagination-prev * {
+  color: var(--antd-primary-color) !important;
+}
+
+.ant-pagination .ant-pagination-next * {
+  color: var(--antd-primary-color) !important;
+}
+
+.ant-pagination .ant-pagination-item a {
+  color: rgb(176, 176, 191);
+}
+
+.ant-pagination .ant-pagination-item.ant-pagination-item-active {
+  background-color: var(--antd-primary-color) !important;
+}
+
+.ant-pagination .ant-pagination-item.ant-pagination-item-active a {
+  color: white !important;
+}
+
+.scrollbar-default::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+.dark :where(.css-dev-only-do-not-override-18iikkb).ant-tabs .ant-tabs-tab-btn {
+  color: white;
+}
+
+:where(.css-dev-only-do-not-override-18iikkb).ant-form-item .ant-form-item-label>label {
+  height: 36px;
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes scale-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+.animation-iteration-count-1 {
+  animation-iteration-count: 1;
+}
+
+.react-flow__panel {
+  display: none !important;
+}
+
+#home-container .ant-tabs-tab-active {
+  font-size: 16px;
+}
+
+#home-container .ant-tabs-tab {
+  font-size: 16px;
+}
+
+#home-container .ant-card-body {
+  padding: 12px 24px;
+}
+
+pre {
+  width: 100%;
+  overflow: auto;
+  white-space: pre-wrap;
+  padding-left: 0.5rem;
+}
+
+/* Floating buttons z-index system */
+.z-float-helper {
+  z-index: 997;
+}
+
+.z-prompt-bot {
+  z-index: 998;
+}
+
+.z-scroll-buttons {
+  z-index: 999;
+}
+
+/* Responsive floating button layout */
+@media (max-width: 768px) {
+  .float-button-container {
+    right: 1rem !important;
+    gap: 0.5rem;
+  }
+  
+  .float-button-container button {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .float-button-container {
+    right: 1.5rem !important;
+    gap: 0.5rem;
+  }
+  
+  .float-button-container button {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+}
+
+table {
+  display: block;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.rc-md-editor {
+  height: inherit;
+}
+
+.rc-md-editor .editor-container>.section {
+  border-right: none !important;
+}
+
+/* ------------------------------------------------------------------------- */
+/* Persian/RTL layout contract                                               */
+/* ------------------------------------------------------------------------- */
+
+html[dir='rtl'],
+html[dir='rtl'] body {
+  direction: rtl;
+}
+
+html[dir='rtl'] body {
+  text-align: right;
+  font-family: 'Vazirmatn', 'Noto Sans Arabic', Tahoma, Arial, sans-serif;
+}
+
+/* Keep source code, SQL, paths and generated data readable in their native
+   left-to-right direction while the surrounding UI remains RTL. */
+html[dir='rtl'] pre,
+html[dir='rtl'] code,
+html[dir='rtl'] .ltr,
+html[dir='rtl'] [dir='ltr'] {
+  direction: ltr;
+  text-align: left;
+  unicode-bidi: isolate;
+}
+
+html[dir='rtl'] input,
+html[dir='rtl'] textarea,
+html[dir='rtl'] [contenteditable='true'] {
+  direction: rtl;
+  text-align: right;
+}
+
+/* Mirror the most common physical Tailwind utilities used by legacy pages.
+   New code should prefer gap/start/end utilities, but these rules keep old
+   screens visually correct without changing component contracts. */
+html[dir='rtl'] [class~='text-left'] { text-align: right !important; }
+html[dir='rtl'] [class~='text-right'] { text-align: left !important; }
+html[dir='rtl'] [class~='justify-start'] { justify-content: flex-end !important; }
+html[dir='rtl'] [class~='justify-end'] { justify-content: flex-start !important; }
+
+html[dir='rtl'] [class~='mr-1'] { margin-right: 0 !important; margin-left: .25rem !important; }
+html[dir='rtl'] [class~='mr-2'] { margin-right: 0 !important; margin-left: .5rem !important; }
+html[dir='rtl'] [class~='mr-3'] { margin-right: 0 !important; margin-left: .75rem !important; }
+html[dir='rtl'] [class~='mr-4'] { margin-right: 0 !important; margin-left: 1rem !important; }
+html[dir='rtl'] [class~='mr-6'] { margin-right: 0 !important; margin-left: 1.5rem !important; }
+html[dir='rtl'] [class~='ml-1'] { margin-left: 0 !important; margin-right: .25rem !important; }
+html[dir='rtl'] [class~='ml-2'] { margin-left: 0 !important; margin-right: .5rem !important; }
+html[dir='rtl'] [class~='ml-3'] { margin-left: 0 !important; margin-right: .75rem !important; }
+html[dir='rtl'] [class~='ml-4'] { margin-left: 0 !important; margin-right: 1rem !important; }
+html[dir='rtl'] [class~='ml-6'] { margin-left: 0 !important; margin-right: 1.5rem !important; }
+
+html[dir='rtl'] [class~='right-0'] { right: auto !important; left: 0 !important; }
+html[dir='rtl'] [class~='right-4'] { right: auto !important; left: 1rem !important; }
+html[dir='rtl'] [class~='right-5'] { right: auto !important; left: 1.25rem !important; }
+html[dir='rtl'] [class~='right-6'] { right: auto !important; left: 1.5rem !important; }
+html[dir='rtl'] [class~='left-0'] { left: auto !important; right: 0 !important; }
+html[dir='rtl'] [class~='left-4'] { left: auto !important; right: 1rem !important; }
+html[dir='rtl'] [class~='left-5'] { left: auto !important; right: 1.25rem !important; }
+html[dir='rtl'] [class~='left-6'] { left: auto !important; right: 1.5rem !important; }
+
+html[dir='rtl'] .float-button-container {
+  right: auto !important;
+  left: 1rem !important;
+}
+
+html[dir='rtl'] .ant-dropdown,
+html[dir='rtl'] .ant-popover,
+html[dir='rtl'] .ant-tooltip {
+  direction: rtl;
+  text-align: right;
+}

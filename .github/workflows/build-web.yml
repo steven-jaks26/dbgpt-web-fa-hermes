@@ -1,0 +1,56 @@
+name: Build Web Application
+
+# Triggered manually (Actions tab) or on pushes/PRs touching the UI source.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.event.number || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm install --include=dev --no-audit --no-fund
+
+      - name: Verify Next.js installation
+        run: |
+          npm ls next --depth=0
+          ls -la node_modules/next/dist/bin/next
+          node node_modules/next/dist/bin/next --version
+
+      - name: Build web application
+        run: |
+          NODE_OPTIONS=--max_old_space_size=8192 node node_modules/next/dist/bin/next build
+          node node_modules/next/dist/bin/next export
+
+      - name: Pack static UI
+        run: |
+          cd out
+          zip -r ../dbgpt-web-ui.zip .
+
+      - name: Upload UI artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbgpt-web-ui-${{ github.sha }}
+          path: dbgpt-web-ui.zip
+          if-no-files-found: error
+          retention-days: 7
