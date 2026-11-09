@@ -56,9 +56,9 @@ body .datalens-brand-mark { display: grid; place-items: center; width: 30px; hei
 body .datalens-brand-name { font-size: 20px; }
 body .datalens-brand-compact .datalens-brand-mark { width: 34px; height: 34px; }
 body .datalens-sidebar .bg-blue-50,
-body .datalens-sidebar .dark\\:bg-blue-900\\/20 { background: var(--datalens-primary-soft) !important; }
+body .datalens-sidebar .dark\:bg-blue-900\/20 { background: var(--datalens-primary-soft) !important; }
 body .datalens-sidebar .text-blue-600,
-body .datalens-sidebar .dark\\:text-blue-400 { color: var(--datalens-primary) !important; }
+body .datalens-sidebar .dark\:text-blue-400 { color: var(--datalens-primary) !important; }
 
 /* Keep Ant Design tabs, forms, buttons and dialogs on the same visual system. */
 .ant-btn-primary { background: var(--datalens-primary) !important; border-color: var(--datalens-primary) !important; }
