@@ -30,12 +30,17 @@ jobs:
 
       - name: Add swap space (build OOMs on 7G host)
         run: |
-          sudo swapon --show || true
-          sudo fallocate -l 8G /swapfile || sudo dd if=/dev/zero of=/swapfile bs=1M count=8192
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
+          set +e
+          sudo swapon --show
+          if ! swapon --show | grep -q swapfile; then
+            sudo dd if=/dev/zero of=/swapfile bs=1M count=6144 status=none
+            sudo chmod 600 /swapfile
+            sudo mkswap /swapfile >/dev/null
+            sudo swapon /swapfile
+          fi
           free -h
+          swapon --show
+          set -e
 
       - name: Install dependencies
         run: npm install --include=dev --no-audit --no-fund
