@@ -39,8 +39,28 @@ jobs:
 
       - name: Build web application
         run: |
-          NODE_OPTIONS=--max_old_space_size=8192 node node_modules/next/dist/bin/next build
-          node node_modules/next/dist/bin/next export
+          set +e
+          NODE_OPTIONS=--max_old_space_size=4096 node node_modules/next/dist/bin/next build > /tmp/next-build.log 2>&1
+          BUILD_RC=$?
+          echo "next build exit: $BUILD_RC"
+          tail -100 /tmp/next-build.log
+          if [ $BUILD_RC -ne 0 ]; then exit $BUILD_RC; fi
+          node node_modules/next/dist/bin/next export > /tmp/next-export.log 2>&1
+          EXPORT_RC=$?
+          echo "next export exit: $EXPORT_RC"
+          cat /tmp/next-export.log
+          exit $EXPORT_RC
+
+      - name: Upload build logs (diagnostic)
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-logs-${{ github.run_id }}
+          path: |
+            /tmp/next-build.log
+            /tmp/next-export.log
+          if-no-files-found: ignore
+          retention-days: 7
 
       - name: Pack static UI
         run: |
