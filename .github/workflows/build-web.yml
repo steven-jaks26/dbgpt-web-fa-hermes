@@ -39,16 +39,26 @@ jobs:
 
       - name: Build web application
         run: |
+          {
+            echo "### Build output"
+            echo '```text'
+          } >> "$GITHUB_STEP_SUMMARY"
           set +e
           NODE_OPTIONS=--max_old_space_size=4096 node node_modules/next/dist/bin/next build > /tmp/next-build.log 2>&1
           BUILD_RC=$?
           echo "next build exit: $BUILD_RC"
           tail -100 /tmp/next-build.log
-          if [ $BUILD_RC -ne 0 ]; then exit $BUILD_RC; fi
+          tail -100 /tmp/next-build.log >> "$GITHUB_STEP_SUMMARY"
+          if [ $BUILD_RC -ne 0 ]; then
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+            exit $BUILD_RC
+          fi
           node node_modules/next/dist/bin/next export > /tmp/next-export.log 2>&1
           EXPORT_RC=$?
           echo "next export exit: $EXPORT_RC"
           cat /tmp/next-export.log
+          cat /tmp/next-export.log >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
           exit $EXPORT_RC
 
       - name: Upload build logs (diagnostic)
