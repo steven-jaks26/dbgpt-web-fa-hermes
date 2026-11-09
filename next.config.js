@@ -89,14 +89,9 @@ const withTM = require("next-transpile-modules")([
   "d3-dsv",
   "d3-format",
   "d3-geo",
-  "d3-shape",
-  "d3-path",
-  "d3-scale-chromatic",
-  "d3-quadtree",
-  "d3-interpolate",
-  "d3-force",
   "d3-timer",
   "d3-dispatch",
+  "d3-interpolate",
 ]);
 
 module.exports = withTM({
