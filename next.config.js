@@ -4,7 +4,7 @@ const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 const path = require("path");
 const nextConfig = {
   experimental: {
-    esmExternals: "loose",
+    esmExternals: false,
     // Keep static-generation workers bounded on low-memory build hosts.
     cpus: 1,
   },
@@ -83,15 +83,6 @@ const withTM = require("next-transpile-modules")([
   "@antv/g-lite",
   "@antv/g-camera-api",
   "@antv/g",
-  "d3-array",
-  "d3-color",
-  "d3-hierarchy",
-  "d3-dsv",
-  "d3-format",
-  "d3-geo",
-  "d3-timer",
-  "d3-dispatch",
-  "d3-interpolate",
 ]);
 
 module.exports = withTM({
