@@ -80,6 +80,23 @@ const withTM = require("next-transpile-modules")([
   "@antv/g6",
   "@antv/graphin",
   "@antv/gpt-vis",
+  "@antv/g-lite",
+  "@antv/g-camera-api",
+  "@antv/g",
+  "d3-array",
+  "d3-color",
+  "d3-hierarchy",
+  "d3-dsv",
+  "d3-format",
+  "d3-geo",
+  "d3-shape",
+  "d3-path",
+  "d3-scale-chromatic",
+  "d3-quadtree",
+  "d3-interpolate",
+  "d3-force",
+  "d3-timer",
+  "d3-dispatch",
 ]);
 
 module.exports = withTM({
